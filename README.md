@@ -1,6 +1,9 @@
-# GuessWeather (guess-weather)
+<p align="center"><img width="500" height ="300" src="https://res.cloudinary.com/dvm6sgg1h/image/upload/v1592966346/rmdstyhzk9kb2av4tntg.png"></p>
+<p align="center">Electron / Android / SPA</p>
 
-Weather Quasar App
+# GuessWeather... guess what!?
+
+Weather Vue + Quasar + API = Awesomeness!
 
 ## Install the dependencies
 ```bash
@@ -11,12 +14,3 @@ npm install
 ```bash
 quasar dev
 ```
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
