@@ -84,24 +84,28 @@ export default {
     getLocation() {
       this.$q.loading.show()
       if(this.$q.platform.is.electron) {
-        this.$axios.get('https://freegeoip.app/json/').then(response => {
-          this.lat =  response.data.latitude;
-          this.lon =  response.data.longitude;
-        }).catch(error => {
-          console.log(error)
-          this.$q.loading.hide()
-        }).finally(() => this.getWeatherByCoords())
+        // this.$axios.get('https://freegeoip.app/json/').then(response => {
+        //   this.lat =  response.data.latitude;
+        //   this.lon =  response.data.longitude;
+        // }).catch(error => {
+        //   console.log(error)
+        //   this.$q.loading.hide()
+        // }).finally(() => this.getWeatherByCoords())
       }else{
-        navigator.geolocation.getCurrentPosition(position => {
-          this.lat =  position.coords.latitude;
-          this.lon =  position.coords.longitude;
-        })
-      this.getWeatherByCoords()
+        // navigator.geolocation.getCurrentPosition(position => {
+        //   this.lat =  position.coords.latitude;
+        //   this.lon =  position.coords.longitude;
+        // })
+        this.getWeatherByCoords(
+            position.coords.latitude,
+            position.coords.longitude
+          );
       }
     },
-    getWeatherByCoords() {
-      this.$axios(`${this.weatherUrl}?lat=${this.lat}&lon=${this.lon}&appid=${this.weatherKey}&units=metric`)
-      .then(response => {
+    getWeatherByCoords(lat, lon) {
+      this.$axios(
+        `${this.weatherUrl}?lat=${lat}&lon=${lon}&appid=${this.weatherKey}&units=metric`
+      ).then(response => {
         this.weatherData = response.data
         this.$q.loading.hide()
       })
