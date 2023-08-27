@@ -65,8 +65,8 @@ export default {
       weatherData: null,
       weatherKey: 'c65ad845185d5c6fc0d1063d6e5634e4',
       weatherUrl: 'https://api.openweathermap.org/data/2.5/weather',
-      lat: null,
-      lon: null
+      lat: 0,
+      lon: 0
     }
   },
   computed: {
@@ -92,14 +92,14 @@ export default {
         //   this.$q.loading.hide()
         // }).finally(() => this.getWeatherByCoords())
       }else{
-        // navigator.geolocation.getCurrentPosition(position => {
-        //   this.lat =  position.coords.latitude;
-        //   this.lon =  position.coords.longitude;
-        // })
-        this.getWeatherByCoords(
-            position.coords.latitude,
-            position.coords.longitude
-          );
+        navigator.geolocation.getCurrentPosition(position => {
+          this.lat =  position.coords.latitude;
+          this.lon =  position.coords.longitude;
+          this.getWeatherByCoords(
+              position.coords.latitude,
+              position.coords.longitude
+            );
+        })
       }
     },
     getWeatherByCoords(lat, lon) {
